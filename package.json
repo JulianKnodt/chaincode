@@ -1,0 +1,33 @@
+{
+  "name": "chaincode",
+  "version": "0.0.1",
+  "description": "chaincode for hackathon",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulianKnodt/chaincode.git"
+  },
+  "keywords": [
+    "chaincode",
+    "ibm",
+    "bluemix",
+    "golang",
+    "js"
+  ],
+  "author": "Julian Knodt <julianknodt@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JulianKnodt/chaincode/issues"
+  },
+  "homepage": "https://github.com/JulianKnodt/chaincode#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "request": "^2.79.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.7.0"
+  }
+}
