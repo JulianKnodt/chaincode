@@ -52,13 +52,16 @@ app.get('/profile', (req, res) => {
 });
 
 app.post('/update', (req, res)=> {
-	chaincode.invoke.write([req.body.user, ...req.body.values])
+	chaincode.invoke.write([req.body.user, ...req.body.values], (err, body) => {
+		res.send(body);
+	});
 });
 
 app.get('/read', (req, res) => {
-	chaincode.query.read([req.body.user]);
+	chaincode.query.read([req.body.user], (err, body) => {
+		res.send(body);
+	});
 });
-
 
 
 app.listen(port, () => {
