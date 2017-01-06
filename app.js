@@ -33,10 +33,6 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.resolve(__dirname)));
 
-console.log(path.resolve(__dirname, 'views'));
-
-let INVOKE_ENDPOINT = process.env.INVOKE_ENDPOINT || 'place-holder';
-let QUERY_ENDPOINT = process.env.QUERY_ENDPOINT || 'place-holder';
 let port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
@@ -55,15 +51,18 @@ app.get('/profile', (req, res) => {
 	res.render(path.resolve(__dirname, 'views', 'profile'));
 });
 
-app.post('/invoke', (req, res)=> {
-	chaincode.invoke.write(req.body)
+app.post('/update', (req, res)=> {
+	chaincode.invoke.write([req.body.user, ...req.body.values])
 });
 
-app.get('/query', (req, res) => {
-	chaincode.query.read(req.body);
+app.get('/read', (req, res) => {
+	chaincode.query.read([req.body.user]);
 });
+
 
 
 app.listen(port, () => {
 	console.log('chaincode listening on port ' + port);
 });
+
+// name nutrition housing healthcare debt
