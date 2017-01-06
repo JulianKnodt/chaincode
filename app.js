@@ -1,5 +1,4 @@
 const express = require('express');
-const request = require('request');
 const morgan = require('morgan');
 const Winston = require('winston');
 const IBC = require('ibm-blockchain-js');
@@ -57,15 +56,22 @@ app.get('/profile', (req, res) => {
 	res.render(path.resolve(__dirname, 'views', 'profile'));
 });
 
-app.post('/invoke', (req, res)=> {
-	chaincode.invoke.write(req.body)
+app.post('/update', (req, res)=> {
+	chaincode.invoke.write([req.body.user, ...req.body.values])
 });
 
-app.get('/query', (req, res) => {
-	chaincode.query.read(req.body);
+app.get('/read', (req, res) => {
+	chaincode.query.read([req.body.user]);
 });
 
 
 app.listen(port, () => {
 	console.log('chaincode listening on port ' + port);
 });
+
+// name nutrition housing healthcare debt
+
+setTimeout(() => {
+	console.log(chaincode);
+	chaincode.invoke.write(['test', 'kevin', 'morevalues', 'how many values can this have'], console.log);
+}, 5000);
