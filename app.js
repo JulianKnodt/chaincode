@@ -34,10 +34,6 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.resolve(__dirname)));
 
-console.log(path.resolve(__dirname, 'views'));
-
-let INVOKE_ENDPOINT = process.env.INVOKE_ENDPOINT || 'place-holder';
-let QUERY_ENDPOINT = process.env.QUERY_ENDPOINT || 'place-holder';
 let port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
@@ -65,13 +61,9 @@ app.get('/read', (req, res) => {
 });
 
 
+
 app.listen(port, () => {
 	console.log('chaincode listening on port ' + port);
 });
 
 // name nutrition housing healthcare debt
-
-setTimeout(() => {
-	console.log(chaincode);
-	chaincode.invoke.write(['test', 'kevin', 'morevalues', 'how many values can this have'], console.log);
-}, 5000);
