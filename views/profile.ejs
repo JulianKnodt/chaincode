@@ -203,19 +203,30 @@ var ref = new firebase("https://palylaunch.firebaseio.com/");
 var authData = ref.getAuth();
 
 function register(){
-	ref.child("users").child(document.getElementById("registerName").value).set({
-		name:document.getElementById("registerName").value,
-		nutrition:document.getElementById("registerNutrition").value,
-		debt:document.getElementById("registerDebt").value,
-		healthcare:document.getElementById("registerHealth").value,
-		housing:document.getElementById("registerHouse").value
-	})
+	// ref.child("users").child(document.getElementById("registerName").value).set({
+	// 	name:document.getElementById("registerName").value,
+	// 	nutrition:document.getElementById("registerNutrition").value,
+	// 	debt:document.getElementById("registerDebt").value,
+	// 	healthcare:document.getElementById("registerHealth").value,
+	// 	housing:document.getElementById("registerHouse").value
+	// })
+	console.log(document.getElementById("registerName").value)
+	info = [document.getElementById("registerName").value, document.getElementById("registerNutrition").value, document.getElementById("registerDebt").value, document.getElementById("registerHealth").value, document.getElementById("registerHousing")];
+
+    $.post("/update",{info:info},
+    function(data, status){
+		console.log(data);
+		console.log(status);
+    });
+
+	console.log("hi")
+	document.getElementById("registerName").innerHTML = "";
 }
 
 function changeInfo(name){
 	info = [name, document.getElementById(name + "nutrition"), document.getElementById(name + "nutrition"), document.getElementById(name + "debt"), document.getElementById(name + "health"),document.getElementById(name + "house")];
 
-    $.post("/update",{info:info}
+    $.post("/update",{info:info},
     function(data, status){
 		console.log(data);
 		console.log(status);
