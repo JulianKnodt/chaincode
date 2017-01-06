@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Login</title>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/creative.min.css" rel="stylesheet">
+  <script type="text/javascript" src="bundle.js" charset="utf-8"></script>
+
+  <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body style="background-color:#277D99">
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style="background:#61DED9; color:white">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="/">Launch</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="/signup">Register</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  <h1 class="register-title">Login</h1>
+  <form class="register">
+    <input type="email" class="register-input" id="email"placeholder="Email address">
+    <input type="password" class="register-input" id="password"placeholder="Password">
+    <p id="error"></p>
+    <button type="button" onclick="login()" value="Login" class="register-button">Login</button>
+  </form>
+  <script>
+  function login(){
+    var firebase = require("/node_modules/firebase");
+    var ref = new firebase("https://palylaunch.firebaseio.com/");
+    console.log("asdf");
+    ref.authWithPassword({
+      email    : document.getElementById("email").value,
+      password : document.getElementById("password").value
+    }, function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+        document.getElementById("error").innerHTML = "Your credentials are messed up";
+      } else { 
+        console.log("Authenticated successfully with payload:", authData);
+        location.href = "/account";
+      }
+    });
+  }
+
+  function getName(authData) {
+    return authData.password.email.replace(/@.*/, '');
+  }
+
+  </script>
+
+</body>
+</html>
