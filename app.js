@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 const Winston = require('winston');
 const IBC = require('ibm-blockchain-js');
 const path = require('path');
@@ -21,6 +22,7 @@ const chaincodeReady = (err, cc) => {
 		cc.deploy('init', ['99'], null, chaincodeDeploy);
 		chaincode = cc;
 	} else {
+		cc.deploy('init', ['99'], null, chaincodeDeploy);
 		chaincode = cc;
 		chaincodeDeploy();
 	}
