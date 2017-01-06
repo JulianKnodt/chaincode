@@ -1,10 +1,10 @@
 module.exports = {
     network:{
-        peers:   [{
-            "api_host": "xxx.xxx.xxx.xxx",
-            "api_port": xxx,
-            "api_port_tls": xxx,
-            "id": "xxxxxx-xxxx-xxx-xxx-xxxxxxxxxxxx_vpx"
+	    peers:   [{
+	        "api_host": "xxx.xxx.xxx.xxx",
+	        "api_port": '3000',
+	        "api_port_tls": '4000',
+	        "id": "xxxxxx-xxxx-xxx-xxx-xxxxxxxxxxxx_vpx"
         }],
         users:  [{
             "enrollId": "user1",
