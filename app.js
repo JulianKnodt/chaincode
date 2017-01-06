@@ -1,6 +1,4 @@
 const express = require('express');
-const request = require('request');
-const morgan = require('morgan');
 const Winston = require('winston');
 const IBC = require('ibm-blockchain-js');
 const path = require('path');

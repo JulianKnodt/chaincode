@@ -16,6 +16,7 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="favicon_imgs/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="favicon_imgs/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="favicon_imgs/favicon-16x16.png">
+
 	<link href="css/creative.min.css" rel="stylesheet">
 	<link rel="manifest" href="favicon_imgs/manifest.json">
 	<meta name="msapplication-TileColor" content="#ffffff">
@@ -60,7 +61,59 @@
 
 	<div class="page-header text-center">
 		<h1 id="title">Admin Page</h1>
-		<a href="/"><button onclick = "logout()" style="padding:7px; background-color:#fff; border-color:#ccc;  border-radius:3px;">Logout</button></a>
+		<a href="/"><button style="padding:7px; background-color:#fff; border-color:#ccc;  border-radius:3px;">Logout</button></a>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="well">
+				<h3 style="text-align:center">
+				People
+				</h3>
+				<input placeholder="search" id="search"> </input>
+				<button style="background:white; " onclick="search()"> Search</button>
+				<script>
+					function search(){
+						document.ready(() => {
+							$('#search').submit(()=> {
+								array = read(document.getElementById("search").value)
+								document.getElementById("titleName").value = array[0]
+								document.getElementById("name").placeholder = array[0]
+								document.getElementById("nutrition").placeholder = array[1];
+								document.getElementById("debt").placeholder = array[2];
+								document.getElementById("health").placeholder = array[3];
+								document.getElementById("house").placeholder = array[4];
+
+								document.getElementById("titleName").style.display = "block";
+								document.getElementById("data").style.display = "block";
+								document.getElementById("saveButton").style.display = "block";
+							});
+						});
+					}
+				</script>
+				<h3 style="display:none" id="titleName">  </h3>
+				<table style="display:none" id="data">
+					<tr>
+						<td>
+							<input id="name"> Hi</input>
+						</td>
+						<td>
+							<input id="nutrition"> Hi</input>
+						</td>
+						<td>
+							<input id="debt"> Hi</input>
+						</td>
+						<td>
+							<input id="health"> Hi</input>
+						</td>
+						<td>
+							<input id="house"> Hi</input>
+						</td>
+					</tr>
+				</table>
+				<button id="saveButton" style="display:none; background:white;" onclick="changeInfo(document.getElementById("titleName").value)"> Save </button>
+			</div>
+		</div>
 	</div>
 
 	<button id="revealButton" onclick="revealAdd()"> Add people </button>
@@ -70,13 +123,17 @@
 			document.getElementById("addSection").style.display = "none";
 			document.getElementById("revealButton").innerHTML = "add people"
 		}
-		document.getElementById("addSection").style.display = "blockblock";
-		document.getElementById("revealButton").innerHTML = "hide"
+		else{
+			document.getElementById("addSection").style.display = "block";
+			document.getElementById("revealButton").innerHTML = "hide"
+		}
 	}
 	</script>
 	<hr>
+
+
 	<div class="row" id="addSection" style="display: none;">
-		<div class="col-sm-6">
+		<div class="col-sm-12">
 			<div class="well">
 				<h3>
 					Add
@@ -122,86 +179,6 @@
 		</div>
 	</div>
 
-
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="well">
-				<h3 style="text-align:center">
-				People
-				</h3>
-				<table id="table" style="width:100%; background-color:rgba(); border:1px">
-					<tr>
-					
-					<td>
-					Name
-					</td>
-					
-					<td>
-					Nutrition
-					</td>
-					
-					<td>
-					Debt Help
-					</td>
-					
-					<td>
-					Healthcare
-					</td>
-
-					<td>
-					Housing
-					</td>
-
-					<td>
-
-					</td>
-
-					</tr>
-				</table>
-			</div>
-		</div>
-
-		<!-- <div class="col-sm-6">
-			<div class="well">
-				<h3>Create new project</h3>
-				<label> Name </label>
-				<input type="text" id="projectName" placeholder="Project Name" style="width:100%; border-radius:2px; border-width:1px"> 
-				<label id="profile">Category</label>
-				<select name="category" class="form-control" id="category">
-					<option value="Initiator">Biology</option>
-					<option value="Contributor">Economics</option>
-					<option value="Match">Environmental Science</option>
-					<option value="Mathematics">Mathematics</option>
-					<option value="Physics">Physics</option>
-					<option value="Business">Business</option>
-					<option value="Education">Education</option>
-					<option value="Arts">Fine Arts</option>
-					<option value="Medicine">Medicine</option>
-					<option value="Psychology">Psychology</option>
-					<option value="Chemistry">Chemistry</option>
-					<option value="Engineering">Engineering</option>
-					<option value="History">History</option>
-					<option value="Music">Music</option>
-					<option value="Social Science">Social Science</option>
-					<option value="Compsci">Computer Science</option>
-					<option value="English">English</option>
-					<option value="Law">Law</option>
-					<option value="Neurobiology">Neurobiology</option>
-					<option value="Sports">Sports</option>
-				</select>
-
-				<label id="profile">Description</label>
-			    <textarea rows="5" type="text" style="width:100%; border-radius:5px; border-width:0px" id="projectDescription"placeholder="Description"></textarea>
-			    <label id="profile">Add Other Users</label><br>
-				<input class="awesomplete" rows="2" style="width:100%; border-radius:5px; border-width:0px" id="addUsers"></input>
-			    <input class="awesomplete" rows="2" style="width:100%; border-radius:5px; border-width:0px" id="user"></input>
-			    <input class="awesomplete" rows="2" style="width:100%; border-radius:5px; border-width:0px" id="user"></input>
-			    <div id="error2"> </div>
-			   	<button onclick="saveInfo()" style="padding:7px; margin-top:5px; background-color:#fff; border-color:#ccc; border-radius:3px;">Save </button>
-			</div> -->
-		</div>
-	</div>
-
 	<!-- <div class="row">
 		<div class="col-sm-6">
 			<div class="well" style="height:500px">
@@ -224,117 +201,40 @@
 var firebase = require("/node_modules/firebase");
 var ref = new firebase("https://palylaunch.firebaseio.com/");
 var authData = ref.getAuth();
-var numberOfProjects = 0;
-var numberOfYourProjects=0;
-var userlist = "";
-
-ref.child("projects").once("value", function(snapshot) {
-  snapshot.forEach(function(childSnapshot) {
-    var key2 = childSnapshot.key();
-    numberOfProjects += 1
-    var childData = childSnapshot.val();
-    $('#table').append('<tr class="col-sm-12" style="color:black; border-color:black; border-width:2px; padding:2px; border-radius:5px">' + '<td><input placeholder="' + childData.name + '"></input></td><td><input placeholder="' + childData.nutrition + '"></input></td><td><input placeholder="' + childData.debt + '"></input></td> <td><input placeholder="' + childData.healthcare + '"></input></td> <td><input placeholder="' + childData.housing + '"></td><td><button onclick="changeData('+childData.creator+'"> Save </button></td></tr>');
-    
-    document.getElementById("joinProject").addEventListener("click", function() {
-		console.log(authData.uid);
-		var arr = [];
-		ref.child("users").child(authData.uid).child("projects").once("value", function(snapshot){
-			snapshot.forEach(function(childSnapshot){
-				var key3 = childSnapshot.key()
-				console.log(key3);
-				arr.push(key3)
-			})
-		});
-
-		var sketch = 0;
-		for (var x = 0; x< arr.length; x++){
-			sketch = sketch + 1;
-			console.log(childData.category);
-			console.log(sketch)
-			console.log(arr.length);
-			if(sketch == arr.length){
-				console.log(key2);
-				ref.child("users").child(authData.uid).child("projects").child(key2).set({
-					name:key2,
-					category:childData.category,
-					description:childData.Description
-				})
-			}
-		}	
-	}, false);
-  });
-});
-
-// ref.child("users").child(authData.uid).on("value", function(snapshot) {
-// 	document.getElementById("title").innerHTMl = snapshot.val().firstname;
-// }, function (errorObject) {
-// 		console.log("The read failed: " + errorObject.code);
-// });
-
-
-function EL(id) { return document.getElementById(id); } // Get el by ID helper function
-
-var imagebase64 = "";
-
-function readFile() {
-  if (this.files && this.files[0]) {
-    var FR= new FileReader();
-    FR.onload = function(e) {
-      EL("img").src       = e.target.result;
-      imagebase64 = e.target.result;
-    };       
-    FR.readAsDataURL( this.files[0] );
-  }
-}
-
-EL("inp").addEventListener("change", readFile, false);
-
-function saveInfo(){
-	var e = document.getElementById("category")
-	var strUser = e.options[e.selectedIndex].value;
-	if(strUser!="Select your type"){
-		ref.child("projects").child(document.getElementById("projectName").value).set({
-			name:document.getElementById("projectName").value,
-			category:strUser,
-			Description:document.getElementById("projectDescription").value,
-			creator:authData.uid
-		})
-	}
-}
-
-function saveType(){
-	var e = document.getElementById("role");
-	var strUser = e.options[e.selectedIndex].value;
-	if(strUser!="Select your type" || imagebase64 != ""){
-		console.log(strUser)
-		console.log(imagebase64)
-		console.log(authData.uid);
-    	ref.child("users").child(authData.uid).push({
-			Image: imagebase64,
-	    	Description: document.getElementById("onesentencedescription").value,
-	    	Role: strUser
-		})
-	}
-	else{
-		document.getElementById("error1").innerHTML = "Please fill all required fields";
-	}
-	
-}
 
 function register(){
 	ref.child("users").child(document.getElementById("registerName").value).set({
-			name:document.getElementById("registerName").value,
-			nutrition:document.getElementById("registerNutrition").value,
-			debt:document.getElementById("registerDebt").value,
-			healthcare:document.getElementById("registerHealth").value,
-			housing:document.getElementById("registerHouse").value
-		})
+		name:document.getElementById("registerName").value,
+		nutrition:document.getElementById("registerNutrition").value,
+		debt:document.getElementById("registerDebt").value,
+		healthcare:document.getElementById("registerHealth").value,
+		housing:document.getElementById("registerHouse").value
+	})
 }
 
-function logout(){
-	ref.unauth();
+function changeInfo(name){
+	info = [name, document.getElementById(name + "nutrition"), document.getElementById(name + "nutrition"), document.getElementById(name + "debt"), document.getElementById(name + "health"),document.getElementById(name + "house")];
+
+    $.post("/update",{info:info}
+    function(data, status){
+		console.log(data);
+		console.log(status);
+    });
 }
+
+function readData(name){
+	$("button").click(function(){
+    	$.get("/read", {},
+    		function(data, status){
+       		alert("Data: " + data + "\nStatus: " + status);
+       		return data;
+    		}
+    	);
+	});
+}
+
 </script>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
 </body>
