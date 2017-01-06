@@ -41,26 +41,26 @@
     <input type="email" class="register-input" id="email"placeholder="Email address">
     <input type="password" class="register-input" id="password"placeholder="Password">
     <p id="error"></p>
-    <button type="button" onclick="login()" value="Login" class="register-button">Login</button>
+    <a href="/account"><button type="button" onclick="login()" value="Login" class="register-button">Login</button></a>
   </form>
   <script>
-  function login(){
-    var firebase = require("/node_modules/firebase");
-    var ref = new firebase("https://palylaunch.firebaseio.com/");
-    console.log("asdf");
-    ref.authWithPassword({
-      email    : document.getElementById("email").value,
-      password : document.getElementById("password").value
-    }, function(error, authData) {
-      if (error) {
-        console.log("Login Failed!", error);
-        document.getElementById("error").innerHTML = "Your credentials are messed up";
-      } else { 
-        console.log("Authenticated successfully with payload:", authData);
-        location.href = "/account";
-      }
-    });
-  }
+  // function login(){
+  //   var firebase = require("/node_modules/firebase");
+  //   var ref = new firebase("https://palylaunch.firebaseio.com/");
+  //   console.log("asdf");
+  //   ref.authWithPassword({
+  //     email    : document.getElementById("email").value,
+  //     password : document.getElementById("password").value
+  //   }, function(error, authData) {
+  //     if (error) {
+  //       console.log("Login Failed!", error);
+  //       document.getElementById("error").innerHTML = "Your credentials are messed up";
+  //     } else { 
+  //       console.log("Authenticated successfully with payload:", authData);
+  //       location.href = "/account";
+  //     }
+  //   });
+  // }
 
   function getName(authData) {
     return authData.password.email.replace(/@.*/, '');
