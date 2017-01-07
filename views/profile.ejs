@@ -57,8 +57,8 @@
 </head>
 
 <body>
-<div>
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+<div style="">
+    <!-- <nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style="background-color:#">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -68,22 +68,9 @@
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                <script>
-                function login(){
-					document.ready(() => {
-						$('#login').submit(()=> {
-                			res.redirect('views/home.ejs');
-						});
-					});
-				}
-                </script>
-                    <li><a href="/" onclick = "login()">Home</a></li>
-                    <li><a href="/"><span class="fa fa-user"></span>&nbsp;Logout</a></li>
-                </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
 	<!-- side navbar -->
 	<style>
@@ -105,12 +92,16 @@
 	}
 	</style>
 
-<div style="margin-top:50px; padding-left:15px;">
+<div>
 	<div class = "row">
 		<div class="navbar navbar-inverse navbar-fixed-left col-sm-6" style="height:100%;">
+
+			<div class="" style="height:40px; padding-right:15px; width:285px;border-style: solid; border-bottom:solid #fff;">
+				<h3 style="font-size:20px; text-align:center; color:white">Dashboard</h3>
+			</div>
 			<!-- search bar -->
-			<div class = "row" style = "margin-top:10px">
-			  	<input placeholder="search" id="search" style = "width:160px; border-radius:3px;margin-left:10px; height:33px;"></input>
+			<div class = "row" style = "margin-top:10px; padding-left:15px">
+			  	<input placeholder="search" id="search" style = "width:180px; border-radius:3px;margin-left:10px; height:33px;"></input>
 				<button style = "height:34px;  border-color: #201D1C !important" class = "btn btn-primary btn-default" onclick="search()"> Search</button>
 			</div>
 
@@ -118,6 +109,13 @@
 		  	<ul class="nav navbar-nav">
 		   		<li><a id = "revealButton" onclick = "revealAdd()">Add People</a></li>
 		  	</ul>
+		  	<ul class="nav navbar-nav">
+		  	  <li><a href="/" onclick = "login()">Home</a></li>
+		  	</ul>
+		  	<ul class="nav navbar-nav">
+                    <li><a href="/"><span class="fa fa-user"></span>&nbsp;Logout</a></li>
+		  	</ul>
+
 
 		 	<script>
 			function revealAdd(){
@@ -134,7 +132,7 @@
 	</div>
 
 	<!-- second column -->
-	<div class="col-sm-10" style = "margin-left:285px">
+	<div class="col-sm-10" style = "margin-left:285px; margin-top:0px">
 		<style>
 		hr.header {
 			margin-top:0px;
@@ -144,35 +142,111 @@
 			border-color:#000000;
 		}
 		</style>
+		<h3 id="name" style="height:41px; text-align:center;margin-right:0px; margin-left:0px; margin-top:20px; border-style: solid; border-bottom:solid #ccc;">Users</h3>
 
-		<div class="well">
-			<h3 style="text-align:center; margin-top:0px">Users</h3>
-			<h3 style="display:none" id="titleName"></h3>
-			<hr class = "primary">
+		<div class="well" style="margin-top:-10px">
+			<!-- <h3 style="display:none" id="titleName"></h3> -->
 			<table style = "display:block" id="data">
 				<tr>
 					<td>
-						<input id="name"> </input>
+						<div style="width:210px; height:170px; margin-left:130px; margin-right:10px; background-color:#fff">
+							<center>
+								<label style="text-align:center; padding-top:10px">
+									Nutrition
+								</label>
+
+								<br>
+								
+								<label id="nutrition" style="text-align:center; padding-top:20px">
+								0
+								</label>
+
+								<br>
+								<br>
+
+								<input style="width:100px;text-align:center" placeholder="Change"> </input>
+							</center>
+						</div>
 					</td>
+					<td>
+						<div style="width:210px; height:170px; margin-right:10px; background-color:#fff">
+							<center>
+								<label id="debt" style="text-align:center; padding-top:10px">
+									Debt
+								</label>
+								<br>
+								<label style="text-align:center; padding-top:20px">
+								0
+								</label>
+								<br>
+								<br>
+								<input style="width:100px; text-align:center" placeholder="Change"> </input>
+							</center>
+						</div>
+					</td>
+					<td>
+						<div style="width:210px; height:170px; margin-right:10px; background-color:#fff">
+							<center>
+								<label id="health" style="text-align:center; padding-top:10px">
+									Healthcare
+								</label>
+								<br>
+								<label style="text-align:center; padding-top:20px">
+								0
+								</label>
+								<br>
+								<br>
+								<input style="width:100px; text-align:center" placeholder="Change"> </input>
+							</center>
+						</div>
+					</td>
+					<td>
+						<div style="width:210px; height:170px; background-color:#fff">
+							<center>
+								<label id="house" style="text-align:center; padding-top:10px">
+									Housing
+								</label>
+								<br>
+								<label style="text-align:center; padding-top:20px">
+								0
+								</label>
+								<br>
+								<br>
+
+								<input style="width:100px; text-align:center" placeholder="Change"> </input>
+							</center>
+						</div>
+					</td>
+				</tr>
+				<!-- <tr>
 					<td>
 						<input id="nutrition">  </input>
 					</td>
+				</tr>
+				<tr>
 					<td>
 						<input id="debt"> </input>
 					</td>
+				</tr>
+				<tr>
 					<td>
 						<input id="health"> </input>
 					</td>
+				</tr>
+				<tr>
 					<td>
 						<input id="house"> </input>
 					</td>
-				</tr>
+				</tr> -->
 			</table>
-			<button id="saveButton" class = "btn-xl" style="display:block; background:white;" onclick="changeInfo(document.getElementById("titleName").value)"> Save </button>
+			<br>
+			<br>
+			<center>
+				<button id="saveButton" class = "btn-xl" style="display:block; background:white;" onclick="changeInfo(document.getElementById("titleName").value)"> Save </button>
+			</center>
 		</div>
 	</div>
-
-	</div>
+</div>
 
 	<!-- adding people section -->
 	<style>
@@ -199,13 +273,12 @@
 		}
 	}
 	</style>
-<
+
 	<!-- add people section -->
 	<div class = "row" id="addSection" style="display: none;">
 		<div class="col-sm-10" style = "margin-left:285px">
 			<div class="well">
 				<h3 style = "text-align:center;">Add People</h3>
-
 				<style>
 				hr.primary {
 					border-color:#39425A;
@@ -242,7 +315,7 @@
 
 				/*Dark Button*/
 				.btn-primary{
-					color:#fff;background-color:#39425A;border-color:#ffffff;-webkit-transition:all .35s;-moz-transition:all .35s;transition:all .35s
+					color:#fff;background-color:#05858F;border-color:#ffffff;-webkit-transition:all .35s;-moz-transition:all .35s;transition:all .35s
 				}
 				.btn-primary.active,.btn-primary.focus,.btn-primary:active,.btn-primary:focus,.btn-primary:hover,.open>.dropdown-toggle.btn-primary{
 					color:#fff;background-color:#526189;border-color:#ffffff
@@ -256,44 +329,6 @@
 				</style>
 
 				<center><button class = "btn btn-primary btn-xl" style = "margin-top:20px;" onclick="register()">Save</button></center>
-
-				<!-- <table>
-					<tr>
-						<td>
-							<input class = "inputBoxes" id="registerName" placeholder = "Name"></input>
-						</td>
-					</tr>
-
-					<tr>
-						<td>
-							<input class = "inputBoxes" id="registerNutrition" placeholder = "Nutrition"></input>
-						</td>
-					</tr>
-
-					<tr>
-						<td>
-							<input class = "inputBoxes" id="registerDebt" placeholder = "Debt Help"></input>
-						</td>
-					</tr>
-
-					<tr>
-						<td>
-							<input class = "inputBoxes" id="registerHealth" placeholder = "Healthcare"></input>
-						</td>
-					</tr>
-					
-					<tr>
-						<td>
-							<input class = "inputBoxes" id="registerHouse" placeholder = "Housing"></input>
-						</td>
-					</tr>
-
-					<tr>
-						<td>
-						<button onclick="register()">Save</button>
-						</td>
-					</tr>
-				</table> -->
 			</div>
 		</div>
 	</div>
@@ -363,8 +398,6 @@ function readData(name){
     	);
 	});
 }
-
-document.getElementById("name").value = "My value";
 
 function search(){
 	document.ready(() => {
