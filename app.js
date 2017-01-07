@@ -60,7 +60,7 @@ app.post('/update', (req, res)=> {
 });
 
 app.get('/read', (req, res) => {
-	chaincode.query.read([req.body.user], (err, body) => {
+	chaincode.query.read([req.query.user], (err, body) => {
 		res.send(body);
 	});
 });
