@@ -388,8 +388,9 @@ function changeInfo(name){
 }
 
 function readData(name){
+	var replaced = name.split(' ').join('+');
 	$("button").click(function(){
-    	$.get("/read", {},
+    	$.get("/read" + "?user=" + replaced ,
     		function(data, status){
        		alert("Data: " + data + "\nStatus: " + status);
        		return data;
