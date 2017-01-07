@@ -59,122 +59,263 @@
 <body>
 <div class="container">
 
-	<div class="page-header text-center">
-		<h1 id="title">Admin Page</h1>
-		<a href="/"><button style="padding:7px; background-color:#fff; border-color:#ccc;  border-radius:3px;">Logout</button></a>
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top"></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                <script>
+                function login(){
+					document.ready(() => {
+						$('#login').submit(()=> {
+                			res.redirect('views/home.ejs');
+						});
+					});
+				}
+                </script>
+                    <li><a href="/" onclick = "login()">Home</a></li>
+                    <li><a href="/"><span class="fa fa-user"></span>&nbsp;Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+	<div class="text-center" style = "margin-bottom:20px">
+		<h1 id="title" style = "padding-top:50px">Admin Page</h1>
 	</div>
 
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="well">
-				<h3 style="text-align:center">
-				People
-				</h3>
-				<input placeholder="search" id="search"> </input>
-				<button style="background:white; " onclick="search()"> Search</button>
-				<script>
-					function search(){
-						document.ready(() => {
-							$('#search').submit(()=> {
-								array = read(document.getElementById("search").value)
-								document.getElementById("titleName").value = array[0]
-								document.getElementById("name").placeholder = array[0]
-								document.getElementById("nutrition").placeholder = array[1];
-								document.getElementById("debt").placeholder = array[2];
-								document.getElementById("health").placeholder = array[3];
-								document.getElementById("house").placeholder = array[4];
+	<!-- side navbar -->
+	<style>
+	.navbar-fixed-left {
+	  width: 240px;
+	  position: fixed;
+	  border-radius: 0;
+	  height: 90%;
+	}
 
-								document.getElementById("titleName").style.display = "block";
-								document.getElementById("data").style.display = "block";
-								document.getElementById("saveButton").style.display = "block";
-							});
-						});
-					}
-				</script>
-				<h3 style="display:none" id="titleName">  </h3>
-				<table style="display:none" id="data">
-					<tr>
-						<td>
-							<input id="name"> Hi</input>
-						</td>
-						<td>
-							<input id="nutrition"> Hi</input>
-						</td>
-						<td>
-							<input id="debt"> Hi</input>
-						</td>
-						<td>
-							<input id="health"> Hi</input>
-						</td>
-						<td>
-							<input id="house"> Hi</input>
-						</td>
-					</tr>
-				</table>
-				<button id="saveButton" style="display:none; background:white;" onclick="changeInfo(document.getElementById("titleName").value)"> Save </button>
+	.navbar-fixed-left .navbar-nav > li {
+	  float: none;  /* Cancel default li float: left */
+	  width: 139px;
+	}
+
+	.navbar-fixed-left + .container {
+	  padding-left: 160px;
+	}
+	</style>
+
+	<div class = "row">
+		<div class="navbar navbar-inverse navbar-fixed-left col-sm-3">
+			<!-- search bar -->
+			<div class = "row" style = "margin-top:10px">
+			  	<input placeholder="search" id="search" style = "width:130px; margin-left:10px; height:33px;"></input>
+				<button style = "height:34px;  border-color: #201D1C !important" class = "btn btn-primary btn-default" onclick="search()"> Search</button>
 			</div>
+			<script>
+			function search(){
+				document.ready(() => {
+					$('#search').submit(()=> {
+						array = read(document.getElementById("search").value)
+						document.getElementById("titleName").value = array[0]
+						document.getElementById("name").placeholder = array[0]
+						document.getElementById("nutrition").placeholder = array[1];
+						document.getElementById("debt").placeholder = array[2];
+						document.getElementById("health").placeholder = array[3];
+						document.getElementById("house").placeholder = array[4];
+
+						document.getElementById("titleName").style.display = "block";
+						document.getElementById("data").style.display = "block";
+						document.getElementById("saveButton").style.display = "block";
+					});
+				});
+			}
+			</script>
+
+			<!-- navbar -->
+		  	<ul class="nav navbar-nav">
+		   		<li><a id = "revealButton" onclick = "revealAdd()">Add People</a></li>
+<!-- 		   		<li><a href="#">Link3</a></li>
+		   		<li><a href="#">Link4</a></li>
+		   		<li><a href="#">Link5</a></li> -->
+		  	</ul>
+		 	<script>
+			function revealAdd(){
+				if(document.getElementById("revealButton").innerHTML == "Hide Popup"){
+					document.getElementById("addSection").style.display = "none";
+					document.getElementById("revealButton").innerHTML = "Add People"
+				}
+				else{
+					document.getElementById("addSection").style.display = "block";
+					document.getElementById("revealButton").innerHTML = "Hide Popup"
+				}
+			}
+			</script>
+	</div>
+
+	<div class="col-sm-9" style = "margin-left:240px">
+		<style>
+		hr.header {
+			margin-top:0px;
+			margin-bottom: 10px;
+			min-width: 860px;
+			border-width: 5px;
+			border-color:#000000;
+		}
+		</style>
+		<hr class = "header">
+		<div class="well">
+			<h3 style="text-align:center; margin-top:0px">Users</h3>
+			<h3 style="display:none" id="titleName"></h3>
+			<hr class = "primary">
+			<table style = "display:none" id="data">
+				<tr>
+					<td>
+						<input style = "width:30px;" id="name">Hi</input>
+					</td>
+					<td>
+						<input style = "width:30px;" id="nutrition"> Hi</input>
+					</td>
+					<td>
+						<input style = "width:30px;" id="debt"> Hi</input>
+					</td>
+					<td>
+						<input id="health"> Hi</input>
+					</td>
+					<td>
+						<input id="house"> Hi</input>
+					</td>
+				</tr>
+			</table>
+			<button id="saveButton" class = "btn-xl" style="display:none; background:white;" onclick="changeInfo(document.getElementById("titleName").value)"> Save </button>
 		</div>
 	</div>
 
-	<button id="revealButton" onclick="revealAdd()"> Add people </button>
-	<script>
-	function revealAdd(){
-		if(document.getElementById("revealButton").innerHTML == "hide"){
-			document.getElementById("addSection").style.display = "none";
-			document.getElementById("revealButton").innerHTML = "add people"
+	</div>
+
+	<!-- adding people section -->
+	<style>
+	.inputBoxes {
+		width: 1500px;
+		height: 40px;
+		margin-bottom: 5px
+	}
+	@media (min-width:400px){
+		.inputBoxes {
+			width: 90px;
 		}
-		else{
-			document.getElementById("addSection").style.display = "block";
-			document.getElementById("revealButton").innerHTML = "hide"
+		hr.header {
+			min-width: 140px
 		}
 	}
-	</script>
-	<hr>
-
-
-	<div class="row" id="addSection" style="display: none;">
-		<div class="col-sm-12">
+	@media (min-width:768px){
+		.inputBoxes {
+			width: 500px;
+			margin-left:150px;
+		}
+		hr.header {
+			min-width: 860px
+		}
+	}
+	</style>
+	<div class = "row" id="addSection" style="display: none;"">
+		<div class="col-sm-9" style = "margin-left:240px">
 			<div class="well">
-				<h3>
-					Add
-				</h3>
-				<table>
+				<h3 style = "text-align:center;">Add People</h3>
+
+				<style>
+				hr.primary {
+					border-color:#39425A;
+					border-width:2px;
+					max-width:75px;
+					color:#000000;
+				}
+				</style>
+				<hr class = "primary">
+
+				<input class = "inputBoxes" id="registerName" placeholder = "Name"></input>
+				<input class = "inputBoxes" id="registerNutrition" placeholder = "Nutrition"></input>
+				<input class = "inputBoxes" id="registerDebt" placeholder = "Debt Help"></input>
+				<input class = "inputBoxes" id="registerHealth" placeholder = "Healthcare"></input>
+				<input class = "inputBoxes" id="registerHouse" placeholder = "Housing"></input>
+
+				<style>
+				/* Button CSS */
+				.btn-default.active,.btn-default:active,.btn-primary.active,.btn-primary:active,.open>.dropdown-toggle.btn-default,.open>.dropdown-toggle.btn-primary{
+					background-image:none
+				}
+				.btn-default{
+					color:#222;background-color:#fff;border-color:#ffffff;transition:all .35s
+				}
+				.btn-default.active,.btn-default.focus,.btn-default:active,.btn-default:focus,.btn-default:hover,.open>.dropdown-toggle.btn-default{
+					color:#222;background-color:#f2f2f2;border-color:#ffffff
+				}
+				.btn-default.disabled,.btn-default.disabled.active,.btn-default.disabled.focus,.btn-default.disabled:active,.btn-default.disabled:focus,.btn-default.disabled:hover,.btn-default[disabled],.btn-default[disabled].active,.btn-default[disabled].focus,.btn-default[disabled]:active,.btn-default[disabled]:focus,.btn-default[disabled]:hover,fieldset[disabled] .btn-default,fieldset[disabled] .btn-default.active,fieldset[disabled] .btn-default.focus,fieldset[disabled] .btn-default:active,fieldset[disabled] .btn-default:focus,fieldset[disabled] .btn-default:hover{
+					background-color:#fff;border-color:#ffffff
+				}
+				.btn-default .badge{
+					color:#fff;background-color:#222
+				}
+
+				/*Dark Button*/
+				.btn-primary{
+					color:#fff;background-color:#39425A;border-color:#ffffff;-webkit-transition:all .35s;-moz-transition:all .35s;transition:all .35s
+				}
+				.btn-primary.active,.btn-primary.focus,.btn-primary:active,.btn-primary:focus,.btn-primary:hover,.open>.dropdown-toggle.btn-primary{
+					color:#fff;background-color:#526189;border-color:#ffffff
+				}
+				.btn-primary.disabled,.btn-primary.disabled.active,.btn-primary.disabled.focus,.btn-primary.disabled:active,.btn-primary.disabled:focus,.btn-primary.disabled:hover,.btn-primary[disabled],.btn-primary[disabled].active,.btn-primary[disabled].focus,.btn-primary[disabled]:active,.btn-primary[disabled]:focus,.btn-primary[disabled]:hover,fieldset[disabled] .btn-primary,fieldset[disabled] .btn-primary.active,fieldset[disabled] .btn-primary.focus,fieldset[disabled] .btn-primary:active,fieldset[disabled] .btn-primary:focus,fieldset[disabled] .btn-primary:hover{
+					background-color:#35723D;border-color:#ffffff
+				}
+				.btn-primary .badge{
+					color:#35723D;background-color:#fff
+				}
+				</style>
+
+				<center><button class = "btn btn-primary btn-xl" style = "margin-top:20px;" onclick="register()">Save</button></center>
+
+				<!-- <table>
 					<tr>
 						<td>
-							<input id="registerName" placeholder = "Name" style="width:500px"></input>
+							<input class = "inputBoxes" id="registerName" placeholder = "Name"></input>
 						</td>
 					</tr>
 
 					<tr>
 						<td>
-							<input id="registerNutrition" placeholder = "Nutrition" style="width:500px"></input>
+							<input class = "inputBoxes" id="registerNutrition" placeholder = "Nutrition"></input>
 						</td>
 					</tr>
 
 					<tr>
 						<td>
-							<input id="registerDebt" placeholder = "Debt Help" style="width:500px"></input>
+							<input class = "inputBoxes" id="registerDebt" placeholder = "Debt Help"></input>
 						</td>
 					</tr>
 
 					<tr>
 						<td>
-							<input id="registerHealth" placeholder = "Healthcare" style="width:500px"></input>
+							<input class = "inputBoxes" id="registerHealth" placeholder = "Healthcare"></input>
 						</td>
 					</tr>
 					
 					<tr>
 						<td>
-							<input id="registerHouse" placeholder = "Housing" style="width:500px"></input>
+							<input class = "inputBoxes" id="registerHouse" placeholder = "Housing"></input>
 						</td>
 					</tr>
 
 					<tr>
 						<td>
-						<button onclick="register()"> save </button>
+						<button onclick="register()">Save</button>
 						</td>
 					</tr>
-				</table>
+				</table> -->
 			</div>
 		</div>
 	</div>
