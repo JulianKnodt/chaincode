@@ -31,6 +31,7 @@
 	<style>
 		body { 
 			padding-top:0px; word-wrap:break-word; 
+		    overflow:hidden;
 		}
 		tr{
 			height:50px;
@@ -56,8 +57,7 @@
 </head>
 
 <body>
-<div class="container">
-
+<div>
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -85,18 +85,14 @@
         </div>
     </nav>
 
-
-	<div class="text-center" style = "margin-bottom:20px">
-		<h1 id="title" style = "padding-top:50px">Admin Page</h1>
-	</div>
-
 	<!-- side navbar -->
 	<style>
 	.navbar-fixed-left {
-	  width: 240px;
+	  width: 300px;
 	  position: fixed;
 	  border-radius: 0;
 	  height: 90%;
+
 	}
 
 	.navbar-fixed-left .navbar-nav > li {
@@ -109,37 +105,20 @@
 	}
 	</style>
 
+<div style="margin-top:50px; padding-left:15px;">
 	<div class = "row">
-		<div class="navbar navbar-inverse navbar-fixed-left col-sm-3">
+		<div class="navbar navbar-inverse navbar-fixed-left col-sm-6" style="height:100%;">
 			<!-- search bar -->
 			<div class = "row" style = "margin-top:10px">
-			  	<input placeholder="search" id="search" style = "width:130px; margin-left:10px; height:33px;"></input>
+			  	<input placeholder="search" id="search" style = "width:160px; border-radius:3px;margin-left:10px; height:33px;"></input>
 				<button style = "height:34px;  border-color: #201D1C !important" class = "btn btn-primary btn-default" onclick="search()"> Search</button>
 			</div>
-			<script>
-			function search(){
-				document.ready(() => {
-					$('#search').submit(()=> {
-						array = read(document.getElementById("search").value)
-						document.getElementById("titleName").value = array[0]
-						document.getElementById("name").placeholder = array[0]
-						document.getElementById("nutrition").placeholder = array[1];
-						document.getElementById("debt").placeholder = array[2];
-						document.getElementById("health").placeholder = array[3];
-						document.getElementById("house").placeholder = array[4];
-
-						document.getElementById("titleName").style.display = "block";
-						document.getElementById("data").style.display = "block";
-						document.getElementById("saveButton").style.display = "block";
-					});
-				});
-			}
-			</script>
 
 			<!-- navbar -->
 		  	<ul class="nav navbar-nav">
 		   		<li><a id = "revealButton" onclick = "revealAdd()">Add People</a></li>
 		  	</ul>
+
 		 	<script>
 			function revealAdd(){
 				if(document.getElementById("revealButton").innerHTML == "Hide Popup"){
@@ -155,7 +134,7 @@
 	</div>
 
 	<!-- second column -->
-	<div class="col-sm-9" style = "margin-left:240px">
+	<div class="col-sm-10" style = "margin-left:285px">
 		<style>
 		hr.header {
 			margin-top:0px;
@@ -165,31 +144,31 @@
 			border-color:#000000;
 		}
 		</style>
-		<hr class = "header">
+
 		<div class="well">
 			<h3 style="text-align:center; margin-top:0px">Users</h3>
 			<h3 style="display:none" id="titleName"></h3>
 			<hr class = "primary">
-			<table style = "display:none" id="data">
+			<table style = "display:block" id="data">
 				<tr>
 					<td>
-						<input style = "width:30px;" id="name">Hi</input>
+						<input id="name"> </input>
 					</td>
 					<td>
-						<input style = "width:30px;" id="nutrition"> Hi</input>
+						<input id="nutrition">  </input>
 					</td>
 					<td>
-						<input style = "width:30px;" id="debt"> Hi</input>
+						<input id="debt"> </input>
 					</td>
 					<td>
-						<input id="health"> Hi</input>
+						<input id="health"> </input>
 					</td>
 					<td>
-						<input id="house"> Hi</input>
+						<input id="house"> </input>
 					</td>
 				</tr>
 			</table>
-			<button id="saveButton" class = "btn-xl" style="display:none; background:white;" onclick="changeInfo(document.getElementById("titleName").value)"> Save </button>
+			<button id="saveButton" class = "btn-xl" style="display:block; background:white;" onclick="changeInfo(document.getElementById("titleName").value)"> Save </button>
 		</div>
 	</div>
 
@@ -220,10 +199,10 @@
 		}
 	}
 	</style>
-
+<
 	<!-- add people section -->
-	<div class = "row" id="addSection" style="display: none;"">
-		<div class="col-sm-9" style = "margin-left:240px">
+	<div class = "row" id="addSection" style="display: none;">
+		<div class="col-sm-10" style = "margin-left:285px">
 			<div class="well">
 				<h3 style = "text-align:center;">Add People</h3>
 
@@ -236,13 +215,13 @@
 				}
 				</style>
 				<hr class = "primary">
-
-				<input class = "inputBoxes" id="registerName" placeholder = "Name"></input>
-				<input class = "inputBoxes" id="registerNutrition" placeholder = "Nutrition"></input>
-				<input class = "inputBoxes" id="registerDebt" placeholder = "Debt Help"></input>
-				<input class = "inputBoxes" id="registerHealth" placeholder = "Healthcare"></input>
-				<input class = "inputBoxes" id="registerHouse" placeholder = "Housing"></input>
-
+				<div style="margin-left:165px">
+					<input class = "inputBoxes" id="registerName" placeholder = "Name"></input>
+					<input class = "inputBoxes" id="registerNutrition" placeholder = "Nutrition"></input>
+					<input class = "inputBoxes" id="registerDebt" placeholder = "Debt Help"></input>
+					<input class = "inputBoxes" id="registerHealth" placeholder = "Healthcare"></input>
+					<input class = "inputBoxes" id="registerHouse" placeholder = "Housing"></input>
+				</div>
 				<style>
 				/* Button CSS */
 				.btn-default.active,.btn-default:active,.btn-primary.active,.btn-primary:active,.open>.dropdown-toggle.btn-default,.open>.dropdown-toggle.btn-primary{
@@ -336,6 +315,7 @@
 		</div>
 	</div> -->
 </div>
+</div>
 
 <script>
 var firebase = require("/node_modules/firebase");
@@ -381,6 +361,27 @@ function readData(name){
        		return data;
     		}
     	);
+	});
+}
+
+document.getElementById("name").value = "My value";
+
+function search(){
+	document.ready(() => {
+		$('#search').submit(()=> {
+			array = read(document.getElementById("search").value)
+			
+			document.getElementById("titleName").style.display = "block";
+			document.getElementById("data").style.display = "block";
+			document.getElementById("saveButton").style.display = "block";
+
+			document.getElementById("titleName").value = array[0]
+			document.getElementById("name").value = array[0]
+			document.getElementById("nutrition").value = array[1];
+			document.getElementById("debt").value = array[2];
+			document.getElementById("health").value = array[3];
+			document.getElementById("house").value = array[4];
+		});
 	});
 }
 
