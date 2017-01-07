@@ -13,11 +13,11 @@
 
   <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
-<body style="background-color:#277D99">
-  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style="background:#61DED9; color:white">
-        <div class="container-fluid">
+<body style="background-color:#277D99;  overflow-x: hidden; overflow-y: hidden;">
+<!--   <nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style="background:#61DED9; color:white">
+        <div class="container-fluid"> -->
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+<!--             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
@@ -34,14 +34,15 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
   <h1 class="register-title">Login</h1>
   <form class="register">
-    <input type="email" class="register-input" id="email"placeholder="Email address">
-    <input type="password" class="register-input" id="password"placeholder="Password">
+    <input type="email" class="register-input" id="email" placeholder="Email address">
+    <input type="password" class="register-input" id="password" placeholder="Password">
     <p id="error"></p>
-    <a href="/profile"><button type="button" onclick="login()" value="Login" class="register-button">Login</button></a>
+    <a href="/profile"><button type="button" onclick="login()" value="Login" class="register-button">Sign In</button></a>
+    <p style = "margin-top:20px; text-align: center">Don't have an account? <a href = "/signup">Sign Up!</a></p>
   </form>
   <script>
   // function login(){

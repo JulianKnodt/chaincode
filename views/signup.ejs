@@ -14,10 +14,9 @@
 
   <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
-<body id="page-top" style="background-color:#277D99">
- <nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style="background-color:#61DED9">
+<body id="page-top" style="background-color:#277D99; overflow-x: hidden; overflow-y: hidden">
+<!--  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style="background-color:#61DED9">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
@@ -25,7 +24,6 @@
                 <a class="navbar-brand page-scroll" href="/">Launch</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -36,12 +34,12 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
 
-  <h1 class="register-title">Register</h1>
+        </div>
+
+    </nav> -->
+
+  <h1 class="register-title" style = "margin-top: 50px">Register</h1>
   <form class="register">
     <input type="email" class="register-input" id="email"placeholder="Email address">
     <input type="text" class="register-input" id="firstname" placeholder="First Name">
@@ -55,6 +53,7 @@
 
     <p id="error"></p>
     <button type="button" onclick="register()" value="Create Account" class="register-button">Create Account</button>
+    <p style = "margin-top: 20px; text-align: center">Already have an account? Sign in <a href = "/login">here!</a></p>
   </form>
 
  <script>
