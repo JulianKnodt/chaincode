@@ -4,6 +4,8 @@ const Winston = require('winston');
 const IBC = require('ibm-blockchain-js');
 const path = require('path');
 const config = require('./config.js');
+var bodyParser = require('body-parser')
+
 
 let chaincode;
 let app = express();
@@ -33,6 +35,9 @@ ibc.load(config, chaincodeReady);
 
 app.set('view engine', 'ejs');
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 app.use(express.static(path.resolve(__dirname)));
 
 let port = process.env.PORT || 3000;
@@ -54,6 +59,7 @@ app.get('/profile', (req, res) => {
 });
 
 app.post('/update', (req, res)=> {
+	console.log("body is" + req.body);
 	chaincode.invoke.write([req.body.user, ...req.body.values], (err, body) => {
 		res.send(body);
 	});

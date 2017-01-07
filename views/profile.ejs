@@ -164,7 +164,7 @@
 								<br>
 								<br>
 
-								<input style="width:100px;text-align:center" placeholder="Change"> </input>
+								<input id="changeNutrition" style="width:100px;text-align:center" placeholder="Change"> </input>
 							</center>
 						</div>
 					</td>
@@ -180,7 +180,7 @@
 								</label>
 								<br>
 								<br>
-								<input style="width:100px; text-align:center" placeholder="Change"> </input>
+								<input id="changeDebt" style="width:100px; text-align:center" placeholder="Change"> </input>
 							</center>
 						</div>
 					</td>
@@ -196,7 +196,7 @@
 								</label>
 								<br>
 								<br>
-								<input style="width:100px; text-align:center" placeholder="Change"> </input>
+								<input id="changeHealth" style="width:100px; text-align:center" placeholder="Change"> </input>
 							</center>
 						</div>
 					</td>
@@ -213,7 +213,7 @@
 								<br>
 								<br>
 
-								<input style="width:100px; text-align:center" placeholder="Change"> </input>
+								<input id="changeHouse"style="width:100px; text-align:center" placeholder="Change"> </input>
 							</center>
 						</div>
 					</td>
@@ -357,30 +357,19 @@ var ref = new firebase("https://palylaunch.firebaseio.com/");
 var authData = ref.getAuth();
 
 function register(){
-	// ref.child("users").child(document.getElementById("registerName").value).set({
-	// 	name:document.getElementById("registerName").value,
-	// 	nutrition:document.getElementById("registerNutrition").value,
-	// 	debt:document.getElementById("registerDebt").value,
-	// 	healthcare:document.getElementById("registerHealth").value,
-	// 	housing:document.getElementById("registerHouse").value
-	// })
-	console.log(document.getElementById("registerName").value)
-	info = [document.getElementById("registerName").value, document.getElementById("registerNutrition").value, document.getElementById("registerDebt").value, document.getElementById("registerHealth").value, document.getElementById("registerHousing")];
+	info = [String(document.getElementById("registerNutrition").value), String(document.getElementById("registerDebt").value), String(document.getElementById("registerHealth").value), String(document.getElementById("registerHouse").value)];
 
-    $.post("/update",{info:info},
+    $.post("/update", {user:String(document.getElementById("registerName").value), values:info},
     function(data, status){
 		console.log(data);
 		console.log(status);
     });
-
-	console.log("hi")
-	document.getElementById("registerName").innerHTML = "";
 }
 
 function changeInfo(name){
-	info = [name, document.getElementById(name + "nutrition"), document.getElementById(name + "nutrition"), document.getElementById(name + "debt"), document.getElementById(name + "health"),document.getElementById(name + "house")];
+	info = [document.getElementById("changeNutrition").value, document.getElementById("changeDebt").value, document.getElementById("changeHealth").value,document.getElementById("changeHouse").value];
 
-    $.post("/update",{info:info},
+    $.post("/update",{user:name, values:info},
     function(data, status){
 		console.log(data);
 		console.log(status);
