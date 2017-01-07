@@ -144,9 +144,9 @@
 		</style>
 		<h3 id="name" style="height:41px; text-align:center;margin-right:0px; margin-left:0px; margin-top:20px; border-style: solid; border-bottom:solid #ccc;">Users</h3>
 
-		<div class="well" style="margin-top:-10px">
+		<div class="well" id="changeData" style="margin-top:-10px; display:none">
 			<!-- <h3 style="display:none" id="titleName"></h3> -->
-			<table style = "display:block" id="data">
+			<table id="data">
 				<tr>
 					<td>
 						<div style="width:210px; height:170px; margin-left:130px; margin-right:10px; background-color:#fff">
@@ -240,9 +240,8 @@
 				</tr> -->
 			</table>
 			<br>
-			<br>
 			<center>
-				<button id="saveButton" class = "btn-xl" style="display:block; background:white;" onclick="changeInfo(document.getElementById("titleName").value)"> Save </button>
+				<button id="saveButton" class = "btn btn-primary btn-xl" style="height:40px; width:80px" onclick="changeInfo(document.getElementById("titleName").value)"> Save </button>
 			</center>
 		</div>
 	</div>
@@ -400,22 +399,17 @@ function readData(name){
 }
 
 function search(){
-	document.ready(() => {
-		$('#search').submit(()=> {
-			array = read(document.getElementById("search").value)
-			
-			document.getElementById("titleName").style.display = "block";
-			document.getElementById("data").style.display = "block";
-			document.getElementById("saveButton").style.display = "block";
+		array = readData(document.getElementById("search").value)
+		
+		document.getElementById("name").style.display = "block";
+		document.getElementById("changeData").style.display = "block";
 
-			document.getElementById("titleName").value = array[0]
-			document.getElementById("name").value = array[0]
-			document.getElementById("nutrition").value = array[1];
-			document.getElementById("debt").value = array[2];
-			document.getElementById("health").value = array[3];
-			document.getElementById("house").value = array[4];
-		});
-	});
+		document.getElementById("titleName").value = array[0]
+		document.getElementById("name").value = array[0]
+		document.getElementById("nutrition").value = array[1];
+		document.getElementById("debt").value = array[2];
+		document.getElementById("health").value = array[3];
+		document.getElementById("house").value = array[4];
 }
 
 </script>
