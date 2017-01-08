@@ -59,14 +59,21 @@ app.get('/profile', (req, res) => {
 });
 
 app.post('/update', (req, res)=> {
-	console.log("body is" + req.body);
-	chaincode.invoke.write([req.body.user, ...req.body.values], (err, body) => {
+	console.log("body is");
+	console.log(req.body);	
+	let body = JSON.parse(req.body);
+
+	chaincode.invoke.write([body, ... body.values], (err, body) => {
 		res.send(body);
 	});
 });
 
-app.get('/read', (req, res) => {
+app.get('/read', (req, res,thirdArg) => {
+	console.log("query is" + req.query);
+
 	chaincode.query.read([req.query.user], (err, body) => {
+		console.log("hel")
+		console.log(err, body, thirdArg)
 		res.send(body);
 	});
 });
