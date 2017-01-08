@@ -60,8 +60,13 @@ app.get('/profile', (req, res) => {
 
 app.post('/update', (req, res)=> {
 	console.log("body is");
-	console.log(req.body);	
-	let body = JSON.parse(req.body);
+	var same = Object.keys(req.body);
+	console.log(same[0]);
+	let sketchbody = same[0];
+	let body = JSON.parse(sketchbody);
+	// console.log(req.body)
+	// console.log(same);
+	// console.log(body);
 
 	chaincode.invoke.write([body, ... body.values], (err, body) => {
 		res.send(body);
