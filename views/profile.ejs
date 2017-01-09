@@ -347,54 +347,45 @@ function register(){
 }
 
 function changeInfo(){
-	console.log(document.getElementById("changeNutrition").value);
-	document.getElementById("nutrition").innerHTML = document.getElementById("changeNutrition").value;
-	document.getElementById("debt").innerHTML = document.getElementById("changeDebt").value;
-	document.getElementById("health").innerHTML = document.getElementById("changeHealth").value;
-	document.getElementById("house").innerHTML = document.getElementById("changeHouse").value;
+	info = [document.getElementById("changeNutrition").value, document.getElementById("changeDebt").value, document.getElementById("changeHealth").value,document.getElementById("changeHouse").value];
 
-	// info = [document.getElementById("changeNutrition").value, document.getElementById("changeDebt").value, document.getElementById("changeHealth").value,document.getElementById("changeHouse").value];
-
- //    $.post("/update",JSON.stringify({user:document.getElementById("registerName").value, values:info}),
- //    function(data, status){
-	// 	console.log(data);
-	// 	console.log(status);
-
+    $.post("/update",JSON.stringify({user:document.getElementById("registerName").value, values:info}),
+    function(data, status){
+		console.log(data);
+		console.log(status);
+		console.log(document.getElementById("changeNutrition").value);
 		
- //    });
+		document.getElementById("nutrition").innerHTML = document.getElementById("changeNutrition").value;
+		document.getElementById("debt").innerHTML = document.getElementById("changeDebt").value;
+		document.getElementById("health").innerHTML = document.getElementById("changeHealth").value;
+		document.getElementById("house").innerHTML = document.getElementById("changeHouse").value;
+    });
 }
 
 function readData(){
-	// var replaced = name.split(' ').join('+');
+	var replaced = document.getElementById("search").value.split(' ').join('+');
 
-	// var string = "/read" + "?user=" + replaced
-	// console.log(string);
+	var string = "/read" + "?user=" + replaced
+	console.log(string);
 	
-	document.getElementById("name").innerHTML = "John Doe";
 
-	document.getElementById("name").style.display = "block";
-	document.getElementById("changeData").style.display = "block";
-	// document.getElementById("nutrition").value = data[1];
-	// document.getElementById("debt").value = data[2];
-	// document.getElementById("health").value = data[3];
-	// document.getElementById("house").value = data[4];
+	$.get(string,
+		function(data, status){
+		console.log(data)
+		console.log(status)
 
-	// $.get(string,
-	// 	function(data, status){
-	// 	console.log(data)
-	// 	console.log(status)
-	// 	console.log("hi")
+		document.getElementById("name").style.display = "block";
+		document.getElementById("changeData").style.display = "block";
+		document.getElementById("nutrition").value = data[1];
+		document.getElementById("debt").value = data[2];
+		document.getElementById("health").value = data[3];
+		document.getElementById("house").value = data[4];		
 
-		
-
- //   		return data;
-	// 	}
-	// );
+   		return data;
+		}
+	);
 }
 
-function search(){
-	array = readData(document.getElementById("search").value)
-}
 
 </script>
 

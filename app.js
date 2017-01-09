@@ -59,39 +59,66 @@ app.get('/profile', (req, res) => {
 
 
 app.post('/update', (req, res)=> {
-	console.log("body is");
-
 	var same = Object.keys(req.body);
+	console.log(req.body["user"]);
+	
 	console.log(same[0]);
 	let sketchbody = same[0];
+	console.log(sketchbody);
 	let test = JSON.parse(sketchbody);
-	var string = String(test);
+	console.log(Object.keys(test));
+	console.log(test.user);
+	console.log(test.values);
 
-	chaincode.invoke.write([string, ... test.values], (err, body) => {
+	chaincode.invoke.write([test.user, ... test.values], (err, body) => {
 		test.values.map(String)
-		// ibc.register(1, 'john doe', enrollSecret, maxRetry, [callback]);
-		
-		res.send(body);
-
-	});
-});
-
-app.get('/read', (req, res) => {
-	var data=req.query
-	console.log(data.user);
-	chaincode.query.read([data.user], "1483911380814", (err, body) => {
 		console.log(body);
 		res.send(body);
 	});
 });
 
 
-app.listen(port, () => {
-	setTimeout(() => chaincode.invoke.init(), 3000);
+app.get('/read', (req, res) => {
+	var same=req.query
+	console.log(same.user);
 
-	ibc.get_transaction('a1f48847-8d61-494e-b714-ca3958ca4aac', function(err, data){
-        console.log('found trans', err, data);
-    });
+	chaincode.invoke.write([same.user, ... [0,0,0,0]], (err, body) => {
+		test.values.map(String)
+		console.log(body);
+		res.send(body);
+	});
+
+	chaincode.query.read([String(same.user)], function(err, data){
+    	console.log('read abc:', data, err);
+    	res.send(data);
+	});
+
+	
+
+	// chaincode.query.read([data.user], (err, data) => {
+	// 	console.log(data);
+	// 	console.log(err);
+	// });
+
+	// chaincode.invoke.write(['a', 'test'], (err, data) => {
+	// 	console.log(err, data);
+	// });
+
+	// chaincode.query.read([data.user], (err, body) => {
+	// 	console.log(body);
+	// 	console.log(err);
+	// 	res.send(body);
+	// });
+});
+
+
+app.listen(port, () => {
+	setTimeout(() => chaincode.invoke.init(), 5000);
+
+	ibc.register(0, 'admin', "5934d168a8", 3, (err,body) =>{
+		console.log(err)
+		console.log(body);
+	});
 
 	console.log('chaincode listening on port ' + port);
 });
