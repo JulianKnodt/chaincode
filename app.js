@@ -84,13 +84,15 @@ app.get('/read', (req, res) => {
 
 	chaincode.query.read([same.user], function(err, data){
     	console.log('read abc:', data, err);
-    	var array = data.split(",");
+    	if(data != undefined){
+	    	var array = data.split(",");
 
-    	var x;
-    	for(x=0; x<=array.count - 1; x++) {
-    		console.log(array[0]);
-		}
-    	res.send(array);
+	    	var x;
+	    	for(x=0; x<=array.count - 1; x++) {
+	    		console.log(array[0]);
+			}
+	    	res.send(array);
+    	}
 	});
 });
 
