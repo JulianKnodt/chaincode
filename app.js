@@ -66,13 +66,13 @@ app.post('/update', (req, res)=> {
 
 	console.log("user name is")
 	console.log(test.user);
-	console.log(test.values);
 
 	var same1 = String(test.values)
 	console.log(same1);
+	console.log(test.user);
+
 	chaincode.invoke.write([test.user, ... same1], (err, body) => {
 		console.log(body);
-
 		res.send(body);
 	});
 });
@@ -82,29 +82,16 @@ app.get('/read', (req, res) => {
 	var same=req.query
 	console.log(same.user);
 
-	chaincode.query.read(['daspe5'], function(err, data){
+	chaincode.query.read([same.user], function(err, data){
     	console.log('read abc:', data, err);
-    	// var array = data.split(",");
-    	// console.log(array[0]);
+    	var array = data.split(",");
+
+    	var x;
+    	for(x=0; x<=array.count - 1; x++) {
+    		console.log(array[0]);
+		}
     	res.send(array);
 	});
-
-	
-
-	// chaincode.query.read([data.user], (err, data) => {
-	// 	console.log(data);
-	// 	console.log(err);
-	// });
-
-	// chaincode.invoke.write(['a', 'test'], (err, data) => {
-	// 	console.log(err, data);
-	// });
-
-	// chaincode.query.read([data.user], (err, body) => {
-	// 	console.log(body);
-	// 	console.log(err);
-	// 	res.send(body);
-	// });
 });
 
 
