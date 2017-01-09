@@ -54,7 +54,7 @@ func (t *chaincode) Invoke(stub shim.ChaincodeStubInterface, function string, ar
 
 func (t *chaincode) Query(stub shim.ChaincodeStubInterface, function string, args string[]) ([]byte, error) {
 	if (function == 'read') {
-		
+		return t.get_user_amount(stub, args);
 	}
 }
 
