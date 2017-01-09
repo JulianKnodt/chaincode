@@ -37,7 +37,6 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
 app.use(express.static(path.resolve(__dirname)));
 
 let port = process.env.PORT || 3000;
@@ -58,33 +57,42 @@ app.get('/profile', (req, res) => {
 	res.render(path.resolve(__dirname, 'views', 'profile'));
 });
 
+
 app.post('/update', (req, res)=> {
 	console.log("body is");
+
 	var same = Object.keys(req.body);
 	console.log(same[0]);
 	let sketchbody = same[0];
-	let body = JSON.parse(sketchbody);
-	// console.log(req.body)
-	// console.log(same);
-	// console.log(body);
+	let test = JSON.parse(sketchbody);
+	var string = String(test);
 
-	chaincode.invoke.write([body, ... body.values], (err, body) => {
+	chaincode.invoke.write([string, ... test.values], (err, body) => {
+		test.values.map(String)
+		// ibc.register(1, 'john doe', enrollSecret, maxRetry, [callback]);
+		
 		res.send(body);
+
 	});
 });
 
-app.get('/read', (req, res,thirdArg) => {
-	console.log("query is" + req.query);
-
-	chaincode.query.read([req.query.user], (err, body) => {
-		console.log("hel")
-		console.log(err, body, thirdArg)
+app.get('/read', (req, res) => {
+	var data=req.query
+	console.log(data.user);
+	chaincode.query.read([data.user], "1483911380814", (err, body) => {
+		console.log(body);
 		res.send(body);
 	});
 });
 
 
 app.listen(port, () => {
+	setTimeout(() => chaincode.invoke.init(), 3000);
+
+	ibc.get_transaction('a1f48847-8d61-494e-b714-ca3958ca4aac', function(err, data){
+        console.log('found trans', err, data);
+    });
+
 	console.log('chaincode listening on port ' + port);
 });
 

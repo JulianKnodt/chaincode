@@ -8,6 +8,7 @@ import (
 )
 
 type chaincode struct {
+	
 }
 
 numberArgsError := "Incorrect # of arguments: expecting ";
